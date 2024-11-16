@@ -1,8 +1,7 @@
 const image = document.querySelector(".woah");
 const sub = document.querySelector(".submitter");
 const text = document.querySelector(".texte");
-const copy = document.querySelector(".copyfromclip");
-usebackup = "false"
+let usebackup = "false"
 let api = "https://api.qrserver.com/v1/create-qr-code/?format=png";
 let backupapi = "https://quickchart.io/qr?text=";
 let apisize = 200;
@@ -12,14 +11,14 @@ async function checkforbackup() {
     try {
     const apirespon = await fetch(api + "&size=" + apisize + "x" + apisize + "&margin=0" + "&ecc=H" + "&data=test");
     apirespon;
-    if (apirespon.ok) {
-        usebackup = "false";
-        console.log("main api functional");
-        console.log(apirespon.status);
-    } else {
-      usebackup = "true";
-      console.warn("main api failed resorting to backup");
-    }  
+        if (apirespon.ok) {
+            usebackup = "false";
+            console.log("main api functional");
+            console.log(apirespon.status);
+        } else {
+          usebackup = "true";
+          console.warn("main api failed resorting to backup");
+        }  
     } catch (error) {
         usebackup = "true";
         console.warn("main api failed resorting to backup, if statment didnt catch error");
